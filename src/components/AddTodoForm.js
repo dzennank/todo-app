@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../redux/todoSlice';
+
 import { 
     Box,
     Flex,
@@ -13,10 +16,15 @@ import {
 
 const AddTodoForm = () => {
   const [value, setValue] = useState('')
+  const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value)
-  }
+    dispatch(
+      addTodo({
+      title: value,
+    })
+    );
+  };
   return (
     <Flex 
     marginLeft="130px"
