@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import { 
     Box,
     Flex,
@@ -11,6 +12,11 @@ import {
   } from '@chakra-ui/react';
 
 const AddTodoForm = () => {
+  const [value, setValue] = useState('')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(value)
+  }
   return (
     <Flex 
     marginLeft="130px"
@@ -20,8 +26,18 @@ const AddTodoForm = () => {
         <Box>
           <FormControl isRequired>
           <FormLabel htmlFor='add-todo'>My Todo List</FormLabel>
-          <Input id='add-todo' placeholder='Add todo...' />
-          <Button colorScheme='teal' size='md' padding="2" marginTop="2">Submit</Button>
+          <Input id='add-todo' 
+          placeholder='Add todo...' 
+          value={value} 
+          onChange={(event) => setValue(event.target.value) }
+          />
+          <Button 
+          colorScheme='teal'
+           size='md' 
+           padding="2" 
+           marginTop="2" 
+           onClick={handleSubmit}>Submit
+           </Button>
           </FormControl>
           
         </Box>
